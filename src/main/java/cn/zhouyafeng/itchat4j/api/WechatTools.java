@@ -57,11 +57,21 @@ public class WechatTools {
 	 * 
 	 * @author https://github.com/yaphone
 	 * @date 2017年5月4日 下午10:56:31
-	 * @param name
+	 * @param nickName
 	 * @return
 	 */
 	public static String getUserNameByNickName(String nickName) {
 		for (JSONObject o : core.getContactList()) {
+			if (o.getString("NickName").equals(nickName)) {
+				return o.getString("UserName");
+			}
+		}
+		return null;
+	}
+
+
+	public static String getGroupUserNameByNickName(String nickName) {
+		for (JSONObject o : core.getGroupList()) {
 			if (o.getString("NickName").equals(nickName)) {
 				return o.getString("UserName");
 			}
